@@ -3,6 +3,7 @@ package oo.max.httpexamples.retrofit;
 import java.io.IOException;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import oo.max.httpexamples.Model.Book;
 import oo.max.httpexamples.Model.BookResponse;
 import retrofit2.Call;
@@ -30,4 +31,14 @@ public class BookService {
         return bookResponse.getData();
 
     }
+
+    public void createBook(Book book) throws IOException {
+        Call<ResponseBody> call = retrofitApiClient.createBook(book);
+        Response<ResponseBody> response = call.execute();
+        if(!response.isSuccessful()) {
+            throw new RuntimeException("Failed!");
+        }
+
+    }
+
 }

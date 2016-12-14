@@ -14,19 +14,19 @@ import oo.max.httpexamples.retrofit.BookService;
 
 public class GetBooksAsyncTask extends AsyncTask<Void, Void, List<Book>> {
 
-    private final BookService retrofitApiWrapper;
+    private final BookService bookService;
     private final BooksDownloadedListener booksDownloadedListener;
 
     public GetBooksAsyncTask(BooksDownloadedListener booksDownloadedListener) {
         this.booksDownloadedListener = booksDownloadedListener;
-        this.retrofitApiWrapper = new BookService();
+        this.bookService = new BookService();
     }
 
     @Override
     protected List<Book> doInBackground(Void... params) {
 
         try {
-            return retrofitApiWrapper.getBooks();
+            return bookService.getBooks();
         } catch (IOException e) {
             e.printStackTrace();
         }
